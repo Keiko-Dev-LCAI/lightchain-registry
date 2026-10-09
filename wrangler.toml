@@ -2,6 +2,11 @@ name = "lightchain-registry"
 main = "src/index.js"
 compatibility_date = "2026-10-09"
 
+# Public hostname (orcavault.win zone is on this Cloudflare account).
+[[routes]]
+pattern = "registry.orcavault.win"
+custom_domain = true
+
 # SUBMISSION_WALLET: native LCAI address that receives the 1 LCAI anti-spam fee.
 [vars]
 SUBMISSION_WALLET = "0x6518fD26a7aD2Fe1bA80De5f279Ee59F55C0A9bA"
