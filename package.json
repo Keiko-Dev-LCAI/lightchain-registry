@@ -1,0 +1,13 @@
+{
+  "name": "lightchain-registry",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Lightchain Agent Registry — directory of apps on chain 9200 for AI agents.",
+  "author": "KeikoDev <keikodev@users.noreply.github.com>",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy"
+  }
+}
