@@ -366,17 +366,91 @@ async function handleMcp(req, env, apps) {
 }
 
 function homePage(origin) {
-  const html = `<!doctype html><meta charset="utf-8"><title>Lightchain Agent Registry</title>
-<body style="font-family:system-ui;max-width:40rem;margin:3rem auto;padding:0 1rem;line-height:1.5">
+  const html = `<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lightchain Agent Registry</title>
+<link rel="icon" type="image/svg+xml" href="https://lightchain.ai/images/brand-page/symbol-pack/svg-symbol/symbol-light.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #5B4BFF;
+    --secondary: #DD00AC;
+    --dark: #14152C;
+    --light: #CCCEEF;
+    --grad: linear-gradient(90deg, #5B4BFF, #EE11FB);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { min-height: 100%; background: var(--dark); color: var(--light); font-family: Inter, system-ui, sans-serif; }
+  body { padding: 28px 32px 64px; }
+  header { display: flex; align-items: center; gap: 16px; margin-bottom: 48px; }
+  header img { height: 36px; width: auto; display: block; }
+  h1 {
+    font-size: clamp(2rem, 5vw, 3.25rem);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    background: var(--grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 16px;
+  }
+  .lede { font-size: 1.125rem; line-height: 1.6; max-width: 52rem; color: var(--light); margin-bottom: 40px; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-bottom: 32px; }
+  .card {
+    display: block;
+    background: rgba(91, 75, 255, 0.08);
+    border: 1px solid rgba(204, 206, 239, 0.16);
+    border-radius: 16px;
+    padding: 22px 24px;
+    color: #fff;
+    text-decoration: none;
+    min-height: 120px;
+  }
+  .card:hover { border-color: var(--primary); }
+  .card .label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--secondary); margin-bottom: 8px; }
+  .card .path { font-size: 1.05rem; font-weight: 600; color: #fff; word-break: break-all; }
+  .card .note { margin-top: 8px; font-size: 0.95rem; color: var(--light); line-height: 1.45; }
+  .onramp { font-size: 1.05rem; line-height: 1.6; }
+  .onramp a { color: #fff; font-weight: 600; }
+  @media (max-width: 640px) {
+    body { padding: 20px 16px 48px; }
+    header img { height: 28px; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <a href="https://lightchain.ai" rel="noopener">
+    <img src="https://lightchain.ai/images/brand-page/logo-pack/svg-logo/logo-white.svg" alt="Lightchain">
+  </a>
+</header>
 <h1>Lightchain Agent Registry</h1>
-<p>Directory of apps on Lightchain (chain 9200) for AI agents. Yellow Pages — no ERC-8004 required.</p>
-<ul>
-<li><a href="/.well-known/lightchain-apps.json">/.well-known/lightchain-apps.json</a></li>
-<li>MCP JSON-RPC: POST /mcp — tools list_apps, get_app, how_to_pay, get_onramp</li>
-<li>Submit: POST /submit (ownership proof + 1 LCAI fee)</li>
-</ul>
-<p>On-ramp: <a href="https://bridge.lightchain.ai/">bridge.lightchain.ai</a> (Buy &amp; Bridge)</p>
-</body>`;
+<p class="lede">Directory of apps on Lightchain (chain 9200) for AI agents. Yellow Pages — no ERC-8004 required.</p>
+<div class="cards">
+  <a class="card" href="/.well-known/lightchain-apps.json">
+    <div class="label">Manifest</div>
+    <div class="path">/.well-known/lightchain-apps.json</div>
+  </a>
+  <div class="card">
+    <div class="label">MCP JSON-RPC</div>
+    <div class="path">POST /mcp</div>
+    <div class="note">tools list_apps, get_app, how_to_pay, get_onramp</div>
+  </div>
+  <div class="card">
+    <div class="label">Submit</div>
+    <div class="path">POST /submit</div>
+    <div class="note">ownership proof + 1 LCAI fee</div>
+  </div>
+</div>
+<p class="onramp">On-ramp: <a href="https://bridge.lightchain.ai/">bridge.lightchain.ai</a> (Buy &amp; Bridge)</p>
+</body>
+</html>`;
   return new Response(html, { headers: { "content-type": "text/html; charset=utf-8" } });
 }
 
