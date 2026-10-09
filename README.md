@@ -10,4 +10,4 @@ On-ramp: [bridge.lightchain.ai](https://bridge.lightchain.ai/) (Buy & Bridge, on
 
 Public identity: **KeikoDev**. Git: `KeikoDev <keikodev@users.noreply.github.com>`.
 
-`SUBMISSION_WALLET` in `wrangler.toml` must be set before self-serve listing is live.
+Submit fee (1 LCAI native) is paid to the configured `SUBMISSION_WALLET` on chain 9200.

@@ -3,9 +3,8 @@ main = "src/index.js"
 compatibility_date = "2026-10-09"
 
 # SUBMISSION_WALLET: native LCAI address that receives the 1 LCAI anti-spam fee.
-# Leave SET_ME until the owner supplies the address. Submit rejects until then.
 [vars]
-SUBMISSION_WALLET = "SET_ME"
+SUBMISSION_WALLET = "0x6518fD26a7aD2Fe1bA80De5f279Ee59F55C0A9bA"
 
 [[kv_namespaces]]
 binding = "REGISTRY_KV"
