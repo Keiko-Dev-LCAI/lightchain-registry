@@ -365,6 +365,35 @@ async function handleMcp(req, env, apps) {
   return json(mcpErr(id, -32601, "method not found"));
 }
 
+function maintenancePage() {
+  const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registry — down for maintenance</title>
+<meta name="robots" content="noindex">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:#e8e8f0;background:#0d0d1a;display:flex;align-items:center;justify-content:center;text-align:center;padding:24px}
+  .card{max-width:560px}
+  .badge{display:inline-block;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#00e5ff;margin-bottom:18px;font-weight:700}
+  h1{font-size:clamp(28px,6vw,44px);line-height:1.15;font-weight:800}
+  p{margin-top:16px;font-size:18px;color:#9898b8}
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="badge">Registry</div>
+    <h1>Down for maintenance</h1>
+    <p>This site is closed while we fix things. Nothing else here is open.</p>
+  </div>
+</body>
+</html>`;
+  return new Response(html, { headers: { "content-type": "text/html; charset=utf-8", "cache-control": "no-store" } });
+}
+
 function homePage(origin) {
   const html = `<!doctype html>
 <html lang="en">
@@ -470,7 +499,7 @@ export default {
     const apps = mergeCatalog(submitted);
     const path = url.pathname.replace(/\/$/, "") || "/";
 
-    if (path === "/" && req.method === "GET") return homePage(url.origin);
+    if (path === "/" && req.method === "GET") return maintenancePage();
     if (path === "/.well-known/lightchain-apps.json" || path === "/apps.json") {
       const q = {
         category: url.searchParams.get("category"),
